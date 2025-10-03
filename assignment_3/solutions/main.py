@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from matplotlib import pyplot as plt
+
 
 # Preprocessing the image for use
 def preprocessed_image(image, kernel_size=(3,3), sigma=0):
@@ -16,11 +16,6 @@ def preprocessed_image(image, kernel_size=(3,3), sigma=0):
 def sobel_edge_detection(image):
     sobelxy = cv2.Sobel(src=image, ddepth=cv2.CV_64F, dx=1, dy=1, ksize=5)  # Combined X and Y Sobel Edge Detection
 
-    # Display Sobel Edge Detection Images
-    #cv2.imshow('Sobel X', sobelx)
-    #cv2.waitKey(0)
-    #cv2.imshow('Sobel Y', sobely)
-    #cv2.waitKey(0)
     cv2.imshow('Sobel X Y using Sobel() function', sobelxy)
     cv2.waitKey(0)
 
