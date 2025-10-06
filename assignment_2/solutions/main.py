@@ -44,11 +44,18 @@ def hsv(image):
     cv2.imwrite('hsv_image.png', hsv_img)
     return hsv_img
 
-# 7 Hue Shift (shift all channels by given hue value)
+# 7 Hue shift
 def hue_shifted(image, emptyPictureArray, hue):
-    # Add hue to all color channels and wrap with modulo 256
-    shifted = (image.astype(np.int16) + hue) % 256
+    # Convert to a larger integer type to safely add hue
+    shifted = image.astype(np.int16) + int(hue)
+
+    # Clamp values to the valid 0–255 range
+    shifted = np.clip(shifted, 0, 255)
+
+    # Convert back to uint8
     shifted = shifted.astype(np.uint8)
+
+    # Save and return
     cv2.imwrite('hue_shifted_image.png', shifted)
     return shifted
 
